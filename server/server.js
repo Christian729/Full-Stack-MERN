@@ -1,8 +1,12 @@
 const express = require('express');
-const cors = require('cors')
+const cors = require('cors')// this syncs up our client and server easier
 const app = express();
 const port = 8000;
 app.use(cors())// this is a short hand of-- require('./routes/person.routes')(app);
+app.use(express.json()); // this posts the json objects
+
+app.use(express.urlencoded({ extended: true })); // this allows json objects with strings and arrays
+require('./config/mongoose.config');
 
 require('./routes/person.routes')(app);
 // this is simply a short-hand notation for code that looks like
