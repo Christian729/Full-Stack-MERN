@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 const PersonForm = () => {
+    const {people, setPeople} = props;
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName]= useState("");
     // the handler when the form is submitted
@@ -14,6 +15,7 @@ const PersonForm = () => {
             .then(res=>{
                 console.log(res);
                 console.log(res.data);
+                setPeople([...people, res.data]);// this will update the lifted state of our people array and add in values
             })
             .catch(err=>console.log(err))
     }
